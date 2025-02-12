@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TailWind</title>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      />
+      
+      <style type="text/tailwindcss">
+        @theme 
+    {  --animate-hover: hover 1s forwards;  
+      @keyframes hover {    
+          0%{
+              transform: scale(1);
+  
+          }    
+          100% {      
+              transform: scale(1.5);
+              }    
+  
+          }
+      }
+    </style>
+    </head>
+<body class="bg-slate-800 text-zinc-50 h-full text:md">
+    <header class="flex justify-evenly items-center sm:flex-col  m-5">
+        <img src="https://i.postimg.cc/g235MZst/logo-modified.png" alt="Logo" class="w-3/10 h-auto">
+        <select name="" id="" class="sm:invisible border-2 border-blue-700 rounded-md bg-zinc-950 m-5 p-2">
+            <option value="" disabled selected hidden>Menu</option>
+            <option value="about">About Me</option>
+            <option value="projects">Projects</option>
+            <option value="contacts">Contacts</option>
+        </select>
+        <nav class="invisible w-0 sm:visible sm:w-full flex justify-evenly items-center border-2 border-blue-700 rounded-md bg-zinc-950 m-5 p-2">
+            <a href="" class="hover:animate-hover">About Me</a>
+            <a href="" class="hover:animate-hover">Projects</a>
+            <a href="" class="hover:animate-hover">Contacts</a>
+        </nav>
+    </header>
+    <main class="flex justify-evenly items-center flex-col text-center">
+        <h1 class="text-2xl m-5">Justin Swenson, Web and CAD developer</h1>
+        <div class=" w-5/10 h-auto border-2 border-blue-700 rounded-md bg-zinc-950 m-5 p-2 sm:w-3/10">
+            <img src="https://i.postimg.cc/xTwhyRvb/mecwest.jpg"  alt="picture of me" class="w-full h-auto ">
+        </div>
+        <section class="flex justify-evenly items-center flex-col border-2 border-blue-700 rounded-md bg-zinc-950 w-5/10 p-5 m-5">
+            <p>Im Justin Swenson, Im a beginner Web Developer and CAD Designer. I use Javascript, HTML. and CSS for web development. I am certified in autodesk Inventor</p>
+            <div class="flex justify-evenly items-center mt-10  w-full">
+                <a href="" class="border-2 border-blue-700 rounded-md bg-zinc-950 mr-5 p-2 hover:animate-hover">Github</a>
+                <a href="" class="border-2 border-blue-700 rounded-md bg-zinc-950 ml-5 p-2 hover:animate-hover">Resume</a>
+            </div>
+        </section>
+        <section id="projects" class="flex flex-col items-center sm:w-7/10 border-2 border-blue-700 rounded-md bg-zinc-950 p-5 m-5">
+            <div id="project-display" class="mb-5">
+                <img id="project-image" src="" alt="project" class="w-full h-auto">
+                <p id="project-description">Description</p>
+            </div>
+            <button id="prev-project" class="border-2 border-blue-700 rounded-md bg-zinc-950 p-2 m-2">Previous</button>
+            <button id="next-project" class="border-2 border-blue-700 rounded-md bg-zinc-950 p-2 m-2">Next</button>
+        </section>
+
+        <script>
+            const projects = [
+                { img: 'https://i.postimg.cc/cCjjz7P2/countdown.png', desc: 'A website that takes a user inputed date and shows the time until that date. it uses connection with html and javascript to make this possible.' },
+                { img: 'https://i.postimg.cc/G3SZ9r9K/Screenshot-2025-02-11-211359.png', desc: 'This website is an example website made entirely with javascript to populate the html document and css styling. everything is written in javascript to make eidts to content more easily accessible' },
+                { img: 'https://i.postimg.cc/mkhJVpp7/project3.jpg', desc: 'A model train that demonstrates connections between different parts of a 3d model' },
+                { img: 'https://i.postimg.cc/76Kj3r9x/project4.jpg', desc: 'A model that uses cams to turn rotational movement into linear movement.' },
+            ];
+
+            let currentProject = 0;
+
+            const projectImage = document.getElementById('project-image');
+            const projectDescription = document.getElementById('project-description');
+
+            function updateProject() {
+                projectImage.src = projects[currentProject].img;
+                projectDescription.textContent = projects[currentProject].desc;
+            }
+
+            document.getElementById('prev-project').addEventListener('click', () => {
+                currentProject = (currentProject - 1 + projects.length) % projects.length;
+                updateProject();
+            });
+
+            document.getElementById('next-project').addEventListener('click', () => {
+                currentProject = (currentProject + 1) % projects.length;
+                updateProject();
+            });
+
+            // Initialize the first project
+            updateProject();
+        </script>
+        <footer class="border-2 border-blue-700 rounded-md bg-zinc-950 m-5 p-2 flex justify-evenly items-start flex-col w-7/10 sm:flex-row sm:items-center">
+            <img src="https://i.postimg.cc/g235MZst/logo-modified.png" alt="Logo" class="w-3/10 h-auto">
+            <div class="flex items-start flex-col sm:ml-10 justify-center">
+                <p>Email: justinswenson111@gmail.com</p>
+                <p>Phone: 208-541-9577</p>
+            </div>
+            <div class="flex justify-evenly items-center w-full">
+                <a href=""><i class="fab fa-github text-4xl" aria-hidden="false"></i></a>
+                <a href=""><i class="fab fa-instagram-square text-4xl" aria-hidden="true"></i></a>
+                <a href=""><i class="fab fa-linkedin text-4xl" aria-hidden="true"></i></a>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
